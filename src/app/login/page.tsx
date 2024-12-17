@@ -3,11 +3,14 @@
 import React, { useState } from 'react';
 import supabase from '../../lib/supabaseClient';
 import styles from "./Login.module.css";
+import { useRouter } from 'next/navigation';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
 
     const handleLogin = async () => {
         setLoading(true);
@@ -21,6 +24,7 @@ function Login() {
             alert(error.message);
         } else {
             alert('Logged in successfully!');
+            router.push("/dashboard");
             // Optional: Redirect after login
             // window.location.href = '/dashboard';
         }
