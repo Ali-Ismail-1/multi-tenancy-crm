@@ -31,6 +31,12 @@ function Signup() {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSignup();
+        }
+    };
+
     return (
         <div className="flex flex-col items-center justify-center mt-12">
             <h1 className="text-2xl font-bold mb-6">Sign Up</h1>
@@ -39,6 +45,7 @@ function Signup() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className="mb-4 p-2 w-72 border rounded"
             />
             <input
@@ -46,6 +53,7 @@ function Signup() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className="mb-4 p-2 w-72 border rounded"
             />
             <button

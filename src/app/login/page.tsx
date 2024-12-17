@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import supabase from '../../lib/supabaseClient';
+import supabase from "@/lib/supabaseClient";
 import styles from "./Login.module.css";
 import { useRouter } from 'next/navigation';
 
@@ -30,6 +30,12 @@ function Login() {
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleLogin();
+        }
+    };
+
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>Login</h1>
@@ -38,6 +44,7 @@ function Login() {
                 placeholder='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
             />
             <input
@@ -45,6 +52,7 @@ function Login() {
                 placeholder='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
                 className={styles.input}
             />
             <button
